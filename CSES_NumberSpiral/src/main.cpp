@@ -5,6 +5,7 @@ using namespace std;
 
 using ll = long long;
 
+map<ll, ll> d{};
 map<pair<ll, ll>, ll> memo{};
 
 void solve(ll y, ll x) {
@@ -14,13 +15,21 @@ void solve(ll y, ll x) {
     }
 
     auto m = (x < y) ? y : x;
+    ll w{};
+    if (d.end() != d.find(m)) {
+        w = d[m];
+    }
+    else {
+        w = 1 + m * m - m;
+        d.insert({ m, w });
+    }
 
     ll v{ 0 };
     if (0 == m % 2) {
-        v = 1 + m * m - m + y - x;
+        v = w + y - x;
     }
     else {
-        v = 1 + m * m - m + x - y;
+        v = w + x - y;
     }
     memo.insert({ {y, x}, v });
 
