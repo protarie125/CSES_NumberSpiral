@@ -4,20 +4,11 @@ using namespace std;
 
 using ll = long long;
 
-ll findDiagonal(ll layer) {
-    return 1 + (layer - 1) * layer;
-}
-
 void solve(ll y, ll x) {
-    auto layer = max(x, y);
-    auto d = findDiagonal(layer);
-
     if (x == y) {
-        cout << d << '\n';
+        cout << 1 + x * x - x << '\n';
         return;
     }
-
-    auto p = layer % 2;
 
     if (x < y) { // -> layer = y, d = 1 + (y - 1) * y = 1 + y * y - y
         if (0 == y % 2) {
