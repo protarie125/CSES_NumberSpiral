@@ -29,6 +29,9 @@ void solve(ll y, ll x) {
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
     int t;
     cin >> t;
     for (int ct = 0; ct < t; ++ct)
