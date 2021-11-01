@@ -1,14 +1,30 @@
 #include <iostream>
+#include <map>
 
 using namespace std;
 
 using ll = long long;
 
-void solve(ll y, ll x) {
-    auto m = (x < y) ? y : x;
-    auto d = (0 == m % 2) ? 1 : -1;
+map<pair<ll, ll>, ll> memo{};
 
-    cout << 1 + m * m - m + d * (y - x) << '\n';
+void solve(ll y, ll x) {
+    if (memo.end() != memo.find({ y, x })) {
+        cout << memo[{y, x}] << '\n';
+        return;
+    }
+
+    auto m = (x < y) ? y : x;
+
+    ll v{ 0 };
+    if (0 == m % 2) {
+        v = 1 + m * m - m + y - x;
+    }
+    else {
+        v = 1 + m * m - m + x - y;
+    }
+    memo.insert({ {y, x}, v });
+
+    cout << v << '\n';
 }
 
 int main()
