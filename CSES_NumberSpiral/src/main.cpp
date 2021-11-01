@@ -5,29 +5,10 @@ using namespace std;
 using ll = long long;
 
 void solve(ll y, ll x) {
-    if (x == y) {
-        cout << 1 + x * x - x << '\n';
-        return;
-    }
+    auto m = (x < y) ? y : x;
+    auto d = (0 == m % 2) ? 1 : -1;
 
-    if (x < y) { // -> layer = y, d = 1 + (y - 1) * y = 1 + y * y - y
-        if (0 == y % 2) {
-            cout << 1 + y * y - x;
-        }
-        else {
-            cout << 1 + y * y - y - y + x;
-        }
-    }
-    else { // -> layer = x, d = 1 + (x - 1) * x = 1 + x * x - x
-        if (0 == x % 2) {
-            cout << 1 + x * x - x - x + y;
-        }
-        else {
-            cout << 1 + x * x - y;
-        }
-    }
-
-    cout << '\n';
+    cout << 1 + m * m - m + d * (y - x) << '\n';
 }
 
 int main()
